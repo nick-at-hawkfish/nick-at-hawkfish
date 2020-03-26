@@ -1,0 +1,186 @@
+//
+//	This is for classes which share the nested class.
+//
+//	@params
+//	$i: The number of columns the current grid item is.
+//	$total-cols: The total number of columns in the grid.
+//	$prepend: The text to prepend to the classname.
+//
+@mixin cf-same-class($i: 0, $total-cols: 0, $prepend: "bbg-column--width-") {
+  $list: append((), ($i, $total-cols));
+
+  #{&}%p#{$prepend}-#{$i}_#{$total-cols} {
+    @content;
+  }
+
+  @if ($i > 1) {
+    @for $count from 1 through ($i - 1) {
+      @if ($i % $count == 0) {
+        @if ($total-cols % ($i / $count) == 0) {
+          $higher-dom: $total-cols / ($i / $count);
+          $list: append($list, ($count, $higher-dom));
+        }
+      }
+    }
+  }
+
+  @each $item in $list {
+    #{&}.#{$prepend}#{nth($item, 1)}_#{nth($item, 2)} {
+      @extend %p#{$prepend}-#{$i}_#{$total-cols};
+    }
+  }
+}
+
+//
+//	This is for classes which are nested inside their parent selector.
+//
+//	@params
+//	$i: The number of columns the current grid item is.
+//	$total-cols: The total number of columns in the grid.
+//	$prepend: The text to prepend to the classname.
+//
+@mixin cf-nested-class($i: 0, $total-cols: 0, $prepend: "bbg-column--width-") {
+  $list: append((), ($i, $total-cols));
+
+  %p#{$prepend}-#{$i}_#{$total-cols} {
+    @content;
+  }
+
+  @if ($i > 1) {
+    @for $count from 1 through ($i - 1) {
+      @if ($i % $count == 0) {
+        @if ($total-cols % ($i / $count) == 0) {
+          $higher-dom: $total-cols / ($i / $count);
+          $list: append($list, ($count, $higher-dom));
+        }
+      }
+    }
+  }
+
+  @each $item in $list {
+    .#{$prepend}#{nth($item, 1)}_#{nth($item, 2)} {
+      @extend %p#{$prepend}-#{$i}_#{$total-cols};
+    }
+  }
+}
+
+@mixin make-classnames(
+  $i: 0,
+  $total-cols: 0,
+  $prepend: "bbg-column--width-",
+  $child: false,
+  $vc-format: true
+) {
+  @if ($vc-format) {
+    @include common-fractions($i, $total-cols, $prepend, $child) {
+      @content;
+    }
+  } @else {
+    @include no-fractions($i, $total-cols, $prepend, $child) {
+      @content;
+    }
+  }
+}
+
+//
+//	Based on the number of columns, and the total number of rows, this adds
+//	multiple class names which include common fractions which VC may use.
+//	I.E. 6-12 would also create 3-6, 4-8, 2-4, and 1-2.
+//
+//  Example:
+//  common-fractions(4, 12, 'demo-', false) {
+//    display: block;
+//  }
+//
+//  Output:
+//	.demo-4-12, .demo-2-6, .demo-1-3 {
+//    display: block;
+//  }
+//
+//	@params
+//	$i: The number of columns the current grid item is.
+//	$total-cols: The total number of columns in the grid.
+//	$prepend: The text to prepend to the classname.
+//  $child: Boolean whether or not the mixin should be the same class as the
+//          parent selector or a nested selector.
+//
+@mixin common-fractions(
+  $i: 0,
+  $total-cols: 0,
+  $prepend: "bbg-column--width-",
+  $child: false
+) {
+  @if ($child) {
+    @include cf-same-class($i, $total-cols, $prepend) {
+      @content;
+    }
+  } @else {
+    @include cf-nested-class($i, $total-cols, $prepend) {
+      @content;
+    }
+  }
+}
+
+@mixin no-fractions(
+  $i: 0,
+  $total-cols: 0,
+  $prepend: "bbg-column--width-",
+  $child: false
+) {
+  @if ($child) {
+    #{if(&, "&", "*")}.#{$prepend}#{$i} {
+      @content;
+    }
+  } @else {
+    .#{$prepend}#{$i} {
+      @content;
+    }
+  }
+}
+
+@mixin breakpoint($min: 0, $max: 0) {
+  $type: type-of($min);
+  @if $type == string {
+    @if $min == x-small {
+      // X Small Mobile Only
+      @media (max-width: $xs-width-max) {
+        @content;
+      }
+    } @else if $min == small {
+      // Mobile Only
+      @media (max-width: $s-width-max) {
+        @content;
+      }
+    } @else if $min == medium {
+      // Tablet and Down
+      @media (max-width: $m-width-max) {
+        @content;
+      }
+    } @else if $min == medium-only {
+      // Tablet Only
+      @media (min-width: $m-width) and (max-width: $m-width-max) {
+        @content;
+      }
+    } @else if $min == medium-up {
+      // Tablet and up
+      @media (min-width: $s-width-max) {
+        @content;
+      }
+    } @else if $min == large {
+      // Desktop and Down
+      @media (max-width: $l-width-max) {
+        @content;
+      }
+    } @else if $min == large-only {
+      // Desktop Only
+      @media (min-width: $l-width) and (max-width: $l-width-max) {
+        @content;
+      }
+    } @else if $min == xlarge-only {
+      // XL and up
+      @media (min-width: $xl-width) {
+        @content;
+      }
+    }
+  }
+}

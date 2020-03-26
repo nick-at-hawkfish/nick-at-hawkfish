@@ -1,0 +1,66 @@
+// Allows horizontal gutters to be removed from the grid
+@import "../grid-vars";
+@import "../grid-mixins";
+
+.bbg-row--no-column-gutter-h .bbg-row--content {
+  max-width: $xl-width-no-padding - $xl-gutter-width;
+  @include breakpoint(large) {
+    max-width: $l-width-no-padding - $l-gutter-width;
+  }
+}
+
+.bbg-column {
+  &.bbg-column--has-border,
+  &.bbg-column--has-bg {
+    padding: 32px;
+  }
+  &.bbg-column--has-border {
+    border: 1px solid $color-grid-background-grey;
+  }
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.bbg-row--no-column-gutter-h .bbg-column {
+  @include breakpoint(xlarge-only) {
+    flex-basis: $xl-width-no-padding - $xl-gutter-width;
+    width: $xl-width-no-padding - $xl-gutter-width;
+    margin: {
+      left: 0;
+      right: 0;
+    }
+  }
+  @include breakpoint(large-only) {
+    flex-basis: $l-width-no-padding - $l-gutter-width;
+    width: $l-width-no-padding - $l-gutter-width;
+    margin: {
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+// Builds sizes for each column width
+$xl-col-width: ($xl-width-no-padding - $xl-gutter-width) / $xl-cols;
+$l-col-width: ($l-width-no-padding - $l-gutter-width) / $l-cols;
+@for $i from 1 through ($l-cols) {
+  @include make-classnames(
+    $i,
+    $l-cols,
+    "bbg-column--width-",
+    true,
+    $format-for-vc
+  ) {
+    .bbg-row--no-column-gutter-h & {
+      @include breakpoint(xlarge-only) {
+        flex-basis: $xl-col-width * $i;
+        width: $xl-col-width * $i;
+      }
+      @include breakpoint(large-only) {
+        flex-basis: $l-col-width * $i;
+        width: $l-col-width * $i;
+      }
+    }
+  }
+}

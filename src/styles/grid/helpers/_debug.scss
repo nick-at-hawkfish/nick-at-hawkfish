@@ -1,0 +1,509 @@
+/* Debug Menu */
+.debug_form {
+  display: block;
+  position: fixed;
+  left: 0;
+  padding-right: 10px;
+  top: 100px;
+  background: #fff;
+  z-index: 99999;
+  padding: 10px 5px;
+  border-top: 1px solid #4a90e2;
+  border-bottom: 1px solid #4a90e2;
+  box-sizing: content-box;
+  transform: translateX(-100%);
+  transition: transform 0.2s ease-in-out;
+  transition-delay: 0.1s;
+  outline: 0 !important;
+}
+
+.debug_form:hover {
+  transform: translateX(0);
+}
+
+.debug_form .title {
+  color: #4a90e2;
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: -1px;
+  height: 100%;
+  width: 25px;
+  background: #fff;
+  border: 1px solid #4a90e2;
+  border-left: 0;
+  border-bottom-right-radius: 10px;
+}
+
+.debug_form .title span {
+  white-space: nowrap;
+  display: block;
+  position: absolute;
+  align-self: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.debug_form .inner_title {
+  color: #4a90e2;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.debug_form .debug-button {
+  display: block;
+  padding: 5px 15px;
+  background: #fff;
+  color: #4a90e2;
+  border: 1px solid #4a90e2;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  text-align: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.debug_form .debug-button:hover {
+  color: #fff;
+  background: #4a90e2;
+}
+
+.debug_form .debug-button.selected {
+  color: #fff !important;
+  background: #f26522 !important;
+  border: 1px solid #f26522;
+  cursor: default !important;
+}
+
+.debug_form * {
+  outline: 0 !important;
+}
+
+/* Debug Grid */
+.debug_grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99998;
+  pointer-events: none;
+}
+
+.debug_grid .bbg-row--content {
+  padding-top: 0 !important;
+}
+
+.debug_grid .bbg-column {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  background: rgba(0, 255, 0, 0.3);
+  height: 100vh;
+}
+
+/* Outlines */
+body.bbg-debug-outline {
+  outline: 1px solid #2980b9 !important;
+}
+
+.bbg-debug-outline article {
+  outline: 1px solid #3498db !important;
+}
+
+.bbg-debug-outline nav {
+  outline: 1px solid #0088c3 !important;
+}
+
+.bbg-debug-outline aside {
+  outline: 1px solid #33a0ce !important;
+}
+
+.bbg-debug-outline section {
+  outline: 1px solid #66b8da !important;
+}
+
+.bbg-debug-outline header {
+  outline: 1px solid #99cfe7 !important;
+}
+
+.bbg-debug-outline footer {
+  outline: 1px solid #cce7f3 !important;
+}
+
+.bbg-debug-outline h1 {
+  outline: 1px solid #162544 !important;
+}
+
+.bbg-debug-outline h2 {
+  outline: 1px solid #314e6e !important;
+}
+
+.bbg-debug-outline h3 {
+  outline: 1px solid #3e5e85 !important;
+}
+
+.bbg-debug-outline h4 {
+  outline: 1px solid #449baf !important;
+}
+
+.bbg-debug-outline h5 {
+  outline: 1px solid #c7d1cb !important;
+}
+
+.bbg-debug-outline h6 {
+  outline: 1px solid #4371d0 !important;
+}
+
+.bbg-debug-outline main {
+  outline: 1px solid #2f4f90 !important;
+}
+
+.bbg-debug-outline address {
+  outline: 1px solid #1a2c51 !important;
+}
+
+.bbg-debug-outline div {
+  outline: 1px solid #036cdb !important;
+}
+
+.bbg-debug-outline p {
+  outline: 1px solid #ac050b !important;
+}
+
+.bbg-debug-outline hr {
+  outline: 1px solid #ff063f !important;
+}
+
+.bbg-debug-outline pre {
+  outline: 1px solid #850440 !important;
+}
+
+.bbg-debug-outline blockquote {
+  outline: 1px solid #f1b8e7 !important;
+}
+
+.bbg-debug-outline ol {
+  outline: 1px solid #ff050c !important;
+}
+
+.bbg-debug-outline ul {
+  outline: 1px solid #d90416 !important;
+}
+
+.bbg-debug-outline li {
+  outline: 1px solid #d90416 !important;
+}
+
+.bbg-debug-outline dl {
+  outline: 1px solid #fd3427 !important;
+}
+
+.bbg-debug-outline dt {
+  outline: 1px solid #ff0043 !important;
+}
+
+.bbg-debug-outline dd {
+  outline: 1px solid #e80174 !important;
+}
+
+.bbg-debug-outline figure {
+  outline: 1px solid #f0b !important;
+}
+
+.bbg-debug-outline figcaption {
+  outline: 1px solid #bf0032 !important;
+}
+
+.bbg-debug-outline table {
+  outline: 1px solid #0c9 !important;
+}
+
+.bbg-debug-outline caption {
+  outline: 1px solid #37ffc4 !important;
+}
+
+.bbg-debug-outline thead {
+  outline: 1px solid #98daca !important;
+}
+
+.bbg-debug-outline tbody {
+  outline: 1px solid #64a7a0 !important;
+}
+
+.bbg-debug-outline tfoot {
+  outline: 1px solid #22746b !important;
+}
+
+.bbg-debug-outline tr {
+  outline: 1px solid #86c0b2 !important;
+}
+
+.bbg-debug-outline th {
+  outline: 1px solid #a1e7d6 !important;
+}
+
+.bbg-debug-outline td {
+  outline: 1px solid #3f5a54 !important;
+}
+
+.bbg-debug-outline col {
+  outline: 1px solid #6c9a8f !important;
+}
+
+.bbg-debug-outline colgroup {
+  outline: 1px solid #6c9a9d !important;
+}
+
+.bbg-debug-outline button {
+  outline: 1px solid #da8301 !important;
+}
+
+.bbg-debug-outline datalist {
+  outline: 1px solid #c06000 !important;
+}
+
+.bbg-debug-outline fieldset {
+  outline: 1px solid #d95100 !important;
+}
+
+.bbg-debug-outline form {
+  outline: 1px solid #d23600 !important;
+}
+
+.bbg-debug-outline input {
+  outline: 1px solid #fca600 !important;
+}
+
+.bbg-debug-outline keygen {
+  outline: 1px solid #b31e00 !important;
+}
+
+.bbg-debug-outline label {
+  outline: 1px solid #ee8900 !important;
+}
+
+.bbg-debug-outline legend {
+  outline: 1px solid #de6d00 !important;
+}
+
+.bbg-debug-outline meter {
+  outline: 1px solid #e8630c !important;
+}
+
+.bbg-debug-outline optgroup {
+  outline: 1px solid #b33600 !important;
+}
+
+.bbg-debug-outline option {
+  outline: 1px solid #ff8a00 !important;
+}
+
+.bbg-debug-outline output {
+  outline: 1px solid #ff9619 !important;
+}
+
+.bbg-debug-outline progress {
+  outline: 1px solid #e57c00 !important;
+}
+
+.bbg-debug-outline select {
+  outline: 1px solid #e26e0f !important;
+}
+
+.bbg-debug-outline textarea {
+  outline: 1px solid #cc5400 !important;
+}
+
+.bbg-debug-outline details {
+  outline: 1px solid #33848f !important;
+}
+
+.bbg-debug-outline summary {
+  outline: 1px solid #60a1a6 !important;
+}
+
+.bbg-debug-outline command {
+  outline: 1px solid #438da1 !important;
+}
+
+.bbg-debug-outline menu {
+  outline: 1px solid #449da6 !important;
+}
+
+.bbg-debug-outline del {
+  outline: 1px solid #bf0000 !important;
+}
+
+.bbg-debug-outline ins {
+  outline: 1px solid #400000 !important;
+}
+
+.bbg-debug-outline img {
+  outline: 1px solid #22746b !important;
+}
+
+.bbg-debug-outline iframe {
+  outline: 1px solid #64a7a0 !important;
+}
+
+.bbg-debug-outline embed {
+  outline: 1px solid #98daca !important;
+}
+
+.bbg-debug-outline object {
+  outline: 1px solid #0c9 !important;
+}
+
+.bbg-debug-outline param {
+  outline: 1px solid #37ffc4 !important;
+}
+
+.bbg-debug-outline video {
+  outline: 1px solid #6ee866 !important;
+}
+
+.bbg-debug-outline audio {
+  outline: 1px solid #027353 !important;
+}
+
+.bbg-debug-outline source {
+  outline: 1px solid #012426 !important;
+}
+
+.bbg-debug-outline canvas {
+  outline: 1px solid #a2f570 !important;
+}
+
+.bbg-debug-outline track {
+  outline: 1px solid #59a600 !important;
+}
+
+.bbg-debug-outline map {
+  outline: 1px solid #7be500 !important;
+}
+
+.bbg-debug-outline area {
+  outline: 1px solid #305900 !important;
+}
+
+.bbg-debug-outline a {
+  outline: 1px solid #ff62ab !important;
+}
+
+.bbg-debug-outline em {
+  outline: 1px solid #800b41 !important;
+}
+
+.bbg-debug-outline strong {
+  outline: 1px solid #ff1583 !important;
+}
+
+.bbg-debug-outline i {
+  outline: 1px solid #803156 !important;
+}
+
+.bbg-debug-outline b {
+  outline: 1px solid #cc1169 !important;
+}
+
+.bbg-debug-outline u {
+  outline: 1px solid #ff0430 !important;
+}
+
+.bbg-debug-outline s {
+  outline: 1px solid #f805e3 !important;
+}
+
+.bbg-debug-outline small {
+  outline: 1px solid #d107b2 !important;
+}
+
+.bbg-debug-outline abbr {
+  outline: 1px solid #4a0263 !important;
+}
+
+.bbg-debug-outline q {
+  outline: 1px solid #240018 !important;
+}
+
+.bbg-debug-outline cite {
+  outline: 1px solid #64003c !important;
+}
+
+.bbg-debug-outline dfn {
+  outline: 1px solid #b4005a !important;
+}
+
+.bbg-debug-outline sub {
+  outline: 1px solid #dba0c8 !important;
+}
+
+.bbg-debug-outline sup {
+  outline: 1px solid #cc0256 !important;
+}
+
+.bbg-debug-outline time {
+  outline: 1px solid #d6606d !important;
+}
+
+.bbg-debug-outline code {
+  outline: 1px solid #e04251 !important;
+}
+
+.bbg-debug-outline kbd {
+  outline: 1px solid #5e001f !important;
+}
+
+.bbg-debug-outline samp {
+  outline: 1px solid #9c0033 !important;
+}
+
+.bbg-debug-outline var {
+  outline: 1px solid #d90047 !important;
+}
+
+.bbg-debug-outline mark {
+  outline: 1px solid #ff0053 !important;
+}
+
+.bbg-debug-outline bdi {
+  outline: 1px solid #bf3668 !important;
+}
+
+.bbg-debug-outline bdo {
+  outline: 1px solid #6f1400 !important;
+}
+
+.bbg-debug-outline ruby {
+  outline: 1px solid #ff7b93 !important;
+}
+
+.bbg-debug-outline rt {
+  outline: 1px solid #ff2f54 !important;
+}
+
+.bbg-debug-outline rp {
+  outline: 1px solid #803e49 !important;
+}
+
+.bbg-debug-outline span {
+  outline: 1px solid #cc2643 !important;
+}
+
+.bbg-debug-outline br {
+  outline: 1px solid #db687d !important;
+}
+
+.bbg-debug-outline wbr {
+  outline: 1px solid #db175b !important;
+}
+
+.bbg-debug-outline #wpadminbar,
+.bbg-debug-outline #wpadminbar *,
+#debug_form,
+#debug_form * {
+  outline: none !important;
+}

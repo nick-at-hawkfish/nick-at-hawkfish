@@ -1,0 +1,289 @@
+@import "grid-vars";
+@import "grid-mixins";
+
+$xl-col-width: $xl-width-no-padding / $xl-cols;
+$l-col-width: $l-width-no-padding / $l-cols;
+$m-col-width: $m-width-no-padding / $m-cols;
+$s-col-width: $s-width-no-padding / $s-cols;
+
+$order-count: 12;
+
+.bbg-column {
+  $xl-basis: $xl-width-no-padding - $xl-gutter-width;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 $xl-basis;
+  width: $xl-basis;
+  margin: $xl-vert-column-margin ($xl-gutter-width / 2);
+  max-width: $xl-basis;
+
+  @include breakpoint(large) {
+    $basis: $l-width-no-padding - $l-gutter-width;
+    flex-basis: $basis;
+    width: $basis;
+    margin: $l-vert-column-margin ($l-gutter-width / 2);
+    max-width: $basis;
+  }
+
+  @include breakpoint(medium) {
+    $basis: $m-width-no-padding - $m-gutter-width;
+    flex-basis: $basis;
+    width: $basis;
+    margin: $m-vert-column-margin ($m-gutter-width / 2);
+    max-width: $basis;
+  }
+
+  @include breakpoint(small) {
+    $basis: percentage(
+      ($s-width-no-padding - $s-gutter-width) / $s-width-no-padding
+    );
+    flex-basis: $basis;
+    width: $basis;
+    margin: $s-vert-column-margin
+      percentage(($s-gutter-width / 2) / $s-width-no-padding);
+    max-width: $basis;
+  }
+
+  &--valign-middle {
+    align-self: center;
+  }
+
+  &--valign-bottom {
+    align-self: flex-end;
+  }
+
+  &--valign-stretch {
+    align-self: stretch;
+  }
+
+  &--halign-center {
+    align-items: center;
+  }
+
+  &--halign-right {
+    align-items: flex-end;
+  }
+}
+
+@for $i from 1 through ($l-cols) {
+  // Base Grid
+  @include make-classnames(
+    $i,
+    $l-cols,
+    "bbg-column--width-",
+    true,
+    $format-for-vc
+  ) {
+    $xl-basis: $xl-col-width * $i - $xl-gutter-width;
+    flex-basis: $xl-basis;
+    width: $xl-basis;
+    max-width: $xl-basis;
+
+    @include breakpoint(large) {
+      $basis: $l-col-width * $i - $l-gutter-width;
+      flex-basis: $basis;
+      width: $basis;
+      max-width: $basis;
+    }
+
+    @include breakpoint(medium) {
+      // Medium Grid
+      $m-basis: $m-width-no-padding - $m-gutter-width;
+      flex-basis: $m-basis;
+      width: $m-basis;
+      max-width: $m-basis;
+    }
+
+    @include breakpoint(small) {
+      // Small Grid
+      $s-basis: percentage(
+        ($s-width-no-padding - $s-gutter-width) / $s-width-no-padding
+      );
+      flex-basis: $s-basis;
+      width: $s-basis;
+      max-width: $s-basis;
+    }
+  }
+
+  // Offsets
+  @include make-classnames(
+    $i - 1,
+    $l-cols,
+    "bbg-column--offset-",
+    true,
+    $format-for-vc
+  ) {
+    margin-left: $xl-col-width * ($i - 1) + $xl-gutter-width / 2;
+
+    @include breakpoint(large) {
+      margin-left: $l-col-width * ($i - 1) + $l-gutter-width / 2;
+    }
+
+    @include breakpoint(medium) {
+      // Medium Grid
+      margin: $m-vert-column-margin ($m-gutter-width / 2);
+    }
+
+    @include breakpoint(small) {
+      // Small Grid
+      margin: $s-vert-column-margin
+        percentage(($s-gutter-width / 2) / $s-width-no-padding);
+    }
+  }
+
+  #{if(&, "&", "*")}.bbg-column--order-#{$i} {
+    order: $i;
+
+    @include breakpoint(medium) {
+      order: 0;
+    }
+  }
+}
+
+@for $i from 1 through ($l-cols) {
+  // XL Only Grid
+  @include breakpoint(xlarge-only) {
+    @include make-classnames(
+      $i,
+      $xl-cols,
+      "bbg-column--xl-width-",
+      true,
+      $format-for-vc
+    ) {
+      $xl-basis: $xl-col-width * $i - $xl-gutter-width;
+      flex-basis: $xl-basis;
+      width: $xl-basis;
+      max-width: $xl-basis;
+    }
+
+    @include make-classnames(
+      $i - 1,
+      $xl-cols,
+      "bbg-column--xl-offset-",
+      true,
+      $format-for-vc
+    ) {
+      margin-left: $xl-col-width * ($i - 1) + $xl-gutter-width / 2;
+    }
+
+    #{if(&, "&", "*")}.bbg-column--xl-order-#{$i} {
+      order: $i;
+
+      @include breakpoint(medium) {
+        order: 0;
+      }
+    }
+  }
+}
+
+@for $i from 1 through ($m-cols) {
+  @include breakpoint(medium-only) {
+    // Medium Grid
+    @include make-classnames(
+      $i,
+      $m-cols,
+      "bbg-column--m-width-",
+      true,
+      $format-for-vc
+    ) {
+      $m-basis: $m-col-width * $i - $m-gutter-width;
+      flex-basis: $m-basis;
+      width: $m-basis;
+      max-width: $m-basis;
+    }
+
+    @include make-classnames(
+      $i - 1,
+      $m-cols,
+      "bbg-column--m-offset-",
+      true,
+      $format-for-vc
+    ) {
+      margin-left: $m-col-width * ($i - 1) + $m-gutter-width / 2;
+    }
+
+    #{if(&, "&", "*")}.bbg-column--m-order-#{$i} {
+      order: $i;
+
+      @include breakpoint(medium) {
+        order: 0;
+      }
+    }
+  }
+}
+
+@for $i from 1 through ($s-cols) {
+  @include breakpoint(small) {
+    // Small Grid
+    @include make-classnames(
+      $i,
+      $s-cols,
+      "bbg-column--s-width-",
+      true,
+      $format-for-vc
+    ) {
+      $s-basis: percentage(
+        ($s-col-width * $i - $s-gutter-width) / $s-width-no-padding
+      );
+      flex-basis: $s-basis;
+      width: $s-basis;
+      max-width: $s-basis;
+    }
+
+    // Small Offset
+    @include make-classnames(
+      $i - 1,
+      $s-cols,
+      "bbg-column--s-offset-",
+      true,
+      $format-for-vc
+    ) {
+      margin-left: percentage(
+        ($s-col-width * ($i - 1) + $s-gutter-width / 2) / $s-width-no-padding
+      );
+    }
+
+    #{if(&, "&", "*")}.bbg-column--s-order-#{$i} {
+      order: $i;
+
+      @include breakpoint(medium) {
+        order: 0;
+      }
+    }
+  }
+}
+
+@for $i from 1 through ($s-cols) {
+  @include breakpoint(x-small) {
+    // Small Grid
+    @include make-classnames(
+      $i,
+      $s-cols,
+      "bbg-column--xs-width-",
+      true,
+      $format-for-vc
+    ) {
+      $xs-basis: percentage(
+        ($s-col-width * $i - $s-gutter-width) / $s-width-no-padding
+      );
+      flex-basis: $xs-basis;
+      width: $xs-basis;
+      max-width: $xs-basis;
+    }
+
+    // Small Offset
+    @include make-classnames(
+      $i - 1,
+      $s-cols,
+      "bbg-column--xs-offset-",
+      true,
+      $format-for-vc
+    ) {
+      margin-left: percentage(
+        ($s-col-width * ($i - 1) + $s-gutter-width / 2) / $s-width-no-padding
+      );
+    }
+  }
+}

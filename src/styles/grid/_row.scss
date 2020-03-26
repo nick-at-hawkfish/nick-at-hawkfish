@@ -1,0 +1,261 @@
+@import "grid-vars";
+@import "grid-mixins";
+
+.bbg-row {
+  background-position: center;
+  background-size: cover;
+  opacity: 1;
+  position: relative;
+  width: 100%;
+
+  // Force 1px on IE<=11 to fix flex height issue
+  // https://github.com/philipwalton/flexbugs/issues/75
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    min-height: 1px;
+    .bbg-column > :last-child {
+      min-height: 1px;
+    }
+  }
+
+  &--content {
+    align-items: flex-start;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: $xl-width-no-padding;
+    padding: $xl-row-margin 0;
+    position: relative;
+    width: 100%;
+
+    @include breakpoint(large) {
+      max-width: $l-width-no-padding;
+      @if ($xl-row-margin != $l-row-margin) {
+        padding: $l-row-margin 0;
+      }
+    }
+
+    @include breakpoint(medium) {
+      max-width: $m-width-no-padding;
+      @if ($l-row-margin != $m-row-margin) {
+        padding: $m-row-margin 0;
+      }
+    }
+
+    @include breakpoint(small) {
+      max-width: 100%;
+      padding: $s-row-margin 2px;
+    }
+
+    &.no-padding {
+      padding: 0;
+    }
+
+    &.bbg-height--40 {
+      min-height: 40vh;
+    }
+
+    &.bbg-height--60 {
+      min-height: 60vh;
+    }
+
+    &.bbg-height--75 {
+      min-height: 75vh;
+    }
+
+    &.bbg-height--100 {
+      min-height: 100vh;
+    }
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      &.bbg-height--40 {
+        height: 40vh;
+      }
+
+      &.bbg-height--60 {
+        height: 60vh;
+      }
+
+      &.bbg-height--75 {
+        height: 75vh;
+      }
+
+      &.bbg-height--100 {
+        height: 100vh;
+      }
+    }
+
+    &.bbg-height--40,
+    &.bbg-height--60,
+    &.bbg-height--75,
+    &.bbg-height--100 {
+      @include breakpoint(small) {
+        &:not(.bbg-height--s-keep) {
+          height: inherit;
+        }
+      }
+    }
+
+    &.bbg-margin--normal {
+      margin: 0 auto !important;
+
+      @include breakpoint(small) {
+        margin: 0 2px !important;
+      }
+    }
+
+    &.bbg-margin-top--normal {
+      margin-top: 0 !important;
+
+      @include breakpoint(small) {
+        margin-top: 0 !important;
+      }
+    }
+
+    &.bbg-margin-bottom--normal {
+      margin-bottom: 0 !important;
+
+      @include breakpoint(small) {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    &.bbg-margin--compact {
+      margin: (-1 * $xl-vert-space-between-rows / 2) auto;
+      @if ($xl-vert-space-between-rows != $l-vert-space-between-rows) {
+        @include breakpoint(large) {
+          margin: (-1 * $l-vert-space-between-rows / 2) auto;
+        }
+      }
+
+      @if ($l-vert-space-between-rows != $m-vert-space-between-rows) {
+        @include breakpoint(medium) {
+          margin: (-1 * $m-vert-space-between-rows / 2) auto;
+        }
+      }
+
+      @include breakpoint(small) {
+        margin: (-1 * $s-vert-space-between-rows / 2) 2px;
+      }
+    }
+
+    &.bbg-margin--none {
+      margin: (-1 * $xl-vert-space-between-rows) auto;
+
+      @if ($xl-vert-space-between-rows != $l-vert-space-between-rows) {
+        @include breakpoint(large) {
+          margin: (-1 * $l-vert-space-between-rows) auto;
+        }
+      }
+
+      @if ($l-vert-space-between-rows != $m-vert-space-between-rows) {
+        @include breakpoint(medium) {
+          margin: (-1 * $m-vert-space-between-rows) auto;
+        }
+      }
+
+      @include breakpoint(small) {
+        margin: (-1 * $s-vert-space-between-rows) auto;
+      }
+    }
+
+    &.bbg-margin-top--compact {
+      margin-top: -1 * $xl-vert-space-between-rows / 2;
+
+      @if ($xl-vert-space-between-rows != $l-vert-space-between-rows) {
+        @include breakpoint(large) {
+          margin-top: -1 * $l-vert-space-between-rows / 2;
+        }
+      }
+
+      @if ($l-vert-space-between-rows != $m-vert-space-between-rows) {
+        @include breakpoint(medium) {
+          margin-top: -1 * $m-vert-space-between-rows / 2;
+        }
+      }
+
+      @include breakpoint(small) {
+        margin-top: -1 * $s-vert-space-between-rows / 2;
+      }
+    }
+
+    &.bbg-margin-top--none {
+      margin-top: -1 * $xl-vert-space-between-rows;
+
+      @if ($xl-vert-space-between-rows != $l-vert-space-between-rows) {
+        @include breakpoint(large) {
+          margin-top: -1 * $l-vert-space-between-rows;
+        }
+      }
+
+      @if ($l-vert-space-between-rows != $m-vert-space-between-rows) {
+        @include breakpoint(medium) {
+          margin-top: -1 * $m-vert-space-between-rows;
+        }
+      }
+
+      @include breakpoint(small) {
+        margin-top: -1 * $s-vert-space-between-rows;
+      }
+    }
+
+    &.bbg-margin-bottom--compact {
+      margin-bottom: -1 * $xl-vert-space-between-rows / 2;
+
+      @if ($xl-vert-space-between-rows != $l-vert-space-between-rows) {
+        @include breakpoint(large) {
+          margin-bottom: -1 * $l-vert-space-between-rows / 2;
+        }
+      }
+
+      @if ($l-vert-space-between-rows != $m-vert-space-between-rows) {
+        @include breakpoint(medium) {
+          margin-bottom: -1 * $m-vert-space-between-rows / 2;
+        }
+      }
+
+      @include breakpoint(small) {
+        margin-bottom: -1 * $s-vert-space-between-rows / 2;
+      }
+    }
+
+    &.bbg-margin-bottom--none {
+      margin-bottom: -1 * $xl-vert-space-between-rows;
+
+      @if ($xl-vert-space-between-rows != $l-vert-space-between-rows) {
+        @include breakpoint(large) {
+          margin-bottom: -1 * $l-vert-space-between-rows;
+        }
+      }
+
+      @if ($l-vert-space-between-rows != $m-vert-space-between-rows) {
+        @include breakpoint(medium) {
+          margin-bottom: -1 * $m-vert-space-between-rows;
+        }
+      }
+
+      @include breakpoint(small) {
+        margin-bottom: -1 * $s-vert-space-between-rows;
+      }
+    }
+  }
+
+  .video-container .video {
+    // Video background
+    left: 50%;
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  // REMOVES PARALLAX EFFECT FROM IOS DEVICES
+  @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: $s-width-max),
+    screen and (-webkit-min-device-pixel-ratio: 3) and (max-device-width: $s-width-max) {
+    background-attachment: initial !important;
+  }
+}

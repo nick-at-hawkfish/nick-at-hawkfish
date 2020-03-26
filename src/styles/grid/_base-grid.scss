@@ -1,0 +1,38 @@
+@import "grid-vars";
+@import "grid-mixins";
+
+@import "row";
+@import "column";
+
+%remove-row-margin {
+  margin: -$xl-vert-column-margin ($xl-gutter-width / -2);
+
+  @include breakpoint(large) {
+    margin: -$l-vert-column-margin ($l-gutter-width / -2);
+  }
+
+  @include breakpoint(medium) {
+    margin: -$m-vert-column-margin ($m-gutter-width / -2);
+  }
+
+  @include breakpoint(small) {
+    margin: 0;
+    width: 100%;
+  }
+
+  .bbg-column {
+    @include breakpoint(small) {
+      flex-basis: 100%;
+      margin: $s-vert-column-margin 0;
+      width: 100%;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

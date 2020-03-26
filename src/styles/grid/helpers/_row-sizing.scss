@@ -1,0 +1,110 @@
+@import "../grid-vars";
+@import "../grid-mixins";
+
+.bbg-row {
+  &.bbg-row--margin-bottom-compact {
+    .bbg-row--content {
+      padding-bottom: 10px !important;
+    }
+    .bbg-column {
+      margin-bottom: 10px !important;
+    }
+  }
+
+  &.bbg-row--margin-bottom-none {
+    .bbg-row--content {
+      padding-bottom: 0 !important;
+    }
+    .bbg-column {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  &.bbg-row--margin-top-compact {
+    .bbg-row--content {
+      padding-top: 10px !important;
+    }
+    .bbg-column {
+      margin-top: 10px !important;
+    }
+  }
+
+  &.bbg-row--margin-top-none {
+    .bbg-row--content {
+      padding-top: 0 !important;
+    }
+    .bbg-column {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+@include breakpoint(medium) {
+  .bbg-column + .bbg-column.bbg-column--collapse-top-margin-on-tablet {
+    margin-top: -40px;
+
+    li:first-of-type {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+@include breakpoint(small) {
+  .bbg-column + .bbg-column.bbg-column--collapse-top-margin-on-mobile {
+    margin-top: -32px;
+
+    li:first-of-type {
+      margin-top: 0.5em;
+    }
+  }
+}
+
+.bbg-row--content_inner {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  &.bbg-align-group--top {
+    align-self: flex-start;
+  }
+
+  &.bbg-align-group--center {
+    align-self: center;
+  }
+
+  &.bbg-align-group--bottom {
+    align-self: flex-end;
+  }
+}
+
+@media (min-width: $m-width) {
+  body.has-bb-that {
+    .bbg-height--40 {
+      min-height: calc(40vh - 30px);
+    }
+    .bbg-height--60 {
+      min-height: calc(60vh - 30px);
+    }
+    .bbg-height--75 {
+      min-height: calc(75vh - 30px);
+    }
+    .bbg-height--100 {
+      min-height: calc(100vh - 30px);
+    }
+
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      .bbg-height--40 {
+        height: calc(40vh - 30px);
+      }
+      .bbg-height--60 {
+        height: calc(60vh - 30px);
+      }
+      .bbg-height--75 {
+        height: calc(75vh - 30px);
+      }
+      .bbg-height--100 {
+        height: calc(100vh - 30px);
+      }
+    }
+  }
+}

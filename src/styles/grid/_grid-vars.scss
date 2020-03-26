@@ -1,0 +1,75 @@
+$format-for-vc: false !default;
+
+$xl-width: 1280px !default;
+$l-width: 1024px !default;
+$m-width: 768px !default;
+$s-width: 480px !default;
+$xs-width: 0 !default;
+
+$l-width-max: $xl-width - 1;
+
+$m-width-max: $l-width - 1;
+
+$s-width-max: $m-width - 1;
+
+$xs-width-max: $s-width - 1;
+
+$xl-padding: 32px !default;
+$xl-gutter-width: 32px !default;
+$xl-cols: 12 !default;
+
+$l-padding: 30px !default;
+$l-gutter-width: 32px !default;
+$l-cols: $xl-cols !default;
+
+$m-padding: 32px !default;
+$m-gutter-width: 32px !default;
+$m-cols: 8 !default;
+
+$s-padding: 18px !default;
+$s-gutter-width: 32px !default;
+$s-cols: 4 !default;
+
+$xl-width-no-padding: $xl-width -
+  (($xl-gutter-width / 2 - ($xl-gutter-width - $xl-padding)) * 2);
+$l-width-no-padding: $l-width -
+  (($l-gutter-width / 2 - ($l-gutter-width - $l-padding)) * 2);
+$m-width-no-padding: $m-width -
+  (($m-gutter-width / 2 - ($m-gutter-width - $m-padding)) * 2);
+$s-width-no-padding: $s-width -
+  (($s-gutter-width / 2 - ($s-gutter-width - $s-padding)) * 2);
+
+$l-vert-space-between-rows: 80px !default;
+$xl-vert-space-between-rows: $l-vert-space-between-rows !default;
+$m-vert-space-between-rows: 80px !default;
+$s-vert-space-between-rows: 64px !default;
+
+$l-vert-space-between-columns: 40px !default;
+$xl-vert-space-between-columns: $l-vert-space-between-columns !default;
+$m-vert-space-between-columns: 40px !default;
+$s-vert-space-between-columns: 32px !default;
+
+$l-vert-column-margin: $l-vert-space-between-columns / 2;
+$xl-vert-column-margin: $xl-vert-space-between-columns / 2;
+$m-vert-column-margin: $m-vert-space-between-columns / 2;
+$s-vert-column-margin: $s-vert-space-between-columns / 2;
+
+$l-row-margin: $l-vert-space-between-rows - $l-vert-column-margin;
+$xl-row-margin: $xl-vert-space-between-rows - $xl-vert-column-margin;
+$m-row-margin: $m-vert-space-between-rows - $m-vert-column-margin;
+$s-row-margin: $s-vert-space-between-rows - $s-vert-column-margin;
+
+$color-grid-background-black: #000000;
+$color-grid-background-grey: #ececec;
+$color-grid-background-white: #ffffff;
+$color-grid-background-blue: #1c355e;
+$color-grid-background-red: #c91e3d;
+
+$row-colors: (
+  ("transparent", "transparent", $color-grid-background-black),
+  ("white", $color-grid-background-white, $color-grid-background-black),
+  ("black", $color-grid-background-black, $color-grid-background-white),
+  ("blue", $color-grid-background-blue, $color-grid-background-white),
+  ("grey", $color-grid-background-grey, $color-grid-background-black),
+  ("red", $color-grid-background-red, $color-grid-background-white)
+);

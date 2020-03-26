@@ -1,0 +1,66 @@
+@import "../grid-vars";
+
+.bbg-row {
+  // Image backgrounds
+  &.bbg-bg--has-media {
+    overflow: hidden;
+  }
+
+  // uncollapse top of media row that follows a row w/ collapsed bottom
+  &.bbg-row--margin-bottom-none + .bbg-bg--has-media {
+    padding-top: $xl-row-margin;
+  }
+
+  @each $color in $row-colors {
+    // Background colors
+    &.bbg-bg--#{nth($color, 1)} {
+      background-color: #{nth($color, 2)};
+      .bbg-row--content {
+        color: #{nth($color, 3)};
+      }
+    }
+
+    // Collapse adjacent rows of the same color
+    &.bbg-bg--#{nth($color, 1)}:not(.bbg-bg--has-media)
+      + .bbg-bg--#{nth($color, 1)} {
+      .bbg-row--content {
+        padding-top: 0;
+        .bbg-column {
+          margin-top: 0;
+        }
+      }
+    }
+
+    // Background bleed for this color
+    &--background-bleed-grid.bbg-bg--#{nth($color, 1)} {
+      background-color: inherit;
+      .bbg-row--content {
+        background-color: #{nth($color, 2)};
+      }
+    }
+  }
+
+  // Force text color
+  &.bbg-text--white &--content {
+    color: $color-grid-background-white;
+  }
+
+  &.bbg-text--black &--content {
+    color: $color-grid-background-black;
+  }
+
+  &.bbg-text--accent &--content {
+    color: $color-grid-background-blue;
+  }
+
+  &--background-bleed-grid {
+    width: auto;
+    display: inline-flex;
+    margin: auto;
+    .bbg-row--content {
+      background-position: center;
+      background-clip: content-box;
+      background-size: cover;
+    }
+  }
+}
