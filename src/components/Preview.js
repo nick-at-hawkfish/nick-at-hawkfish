@@ -70,6 +70,10 @@ const Button = ({ href, bgColor, textColor, content }) => (
 
 const Separator = () => <hr />;
 
+const Form = ({ form }) => {
+  return <div>Here would go a form with name {form}</div>;
+};
+
 // a map from component name to implementation
 const componentMap = new Map();
 componentMap.set("row", Row);
@@ -79,6 +83,7 @@ componentMap.set("Image", Image);
 componentMap.set("WYSIWYG", WYSIWYG);
 componentMap.set("Button", Button);
 componentMap.set("Separator", Separator);
+componentMap.set("Form", Form);
 
 // recursive function to convert JSON to React elements
 const render = definition => {
