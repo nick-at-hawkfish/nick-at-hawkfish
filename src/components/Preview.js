@@ -16,11 +16,12 @@ const client = createClient({
 
 // all the components we have made available.
 // In production we'd probably lazy load these.
-const Row = ({ backgroundImage, backgroundColor, fluid, children }) => {
+const Row = ({ color, backgroundImage, backgroundColor, fluid, children }) => {
   return (
     <div
       className="bbg-row"
       css={{
+        color: color,
         backgroundColor: backgroundColor,
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none"
       }}
