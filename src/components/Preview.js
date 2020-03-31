@@ -99,17 +99,26 @@ const render = definition => {
 // Layout here is the JSON that this page builder produces
 // We wrap everything in a fragment to handle the top level array of rows.
 const PageContent = () => {
+  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(null);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.has("entityID")) {
-      client.getEntry(params.get("entityID")).then(data => {
-        console.log("data", data);
-        setPage(data.fields);
-      });
+      client
+        .getEntry(params.get("entityID"))
+        .then(data => {
+          console.log("data", data);
+          setPage(data.fields);
+          setLoading(false);
+        })
+        .catch(err => {
+          setLoading(false);
+        });
     }
   }, []);
-  return page ? (
+  return loading ? (
+    <div>Loading...</div>
+  ) : page ? (
     <div>
       <h1>{page.title}</h1>
       <h3>{page.template} Template</h3>
