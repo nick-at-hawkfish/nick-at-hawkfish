@@ -32,6 +32,14 @@ const Row = ({ color, backgroundImage, backgroundColor, fluid, children }) => {
   );
 };
 
+const resolvePadding = (padding = {}) => {
+  let top = padding.pt || padding.py || 0;
+  let left = padding.pl || padding.px || 0;
+  let bottom = padding.pb || padding.py || 0;
+  let right = padding.pr || padding.px || 0;
+  return `${top}px ${left}px ${bottom}px ${right}px`;
+};
+
 const Column = ({
   mobileSpan = 4,
   tabletSpan = 8,
@@ -39,13 +47,20 @@ const Column = ({
   mobileOffset = 0,
   tabletOffset = 0,
   desktopOffset = 0,
+  padding,
   children
 }) => {
   return (
     <div
       className={`col-sm-${mobileSpan} col-md-${tabletSpan} col-lg-${desktopSpan} col-xl-${desktopSpan} col-sm-offset-${mobileOffset} col-md-offset-${tabletOffset} col-lg-offset-${desktopOffset} col-xl-offset-${desktopOffset}`}
     >
-      {children}
+      <div
+        css={{
+          padding: resolvePadding(padding)
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };
@@ -97,7 +112,7 @@ componentMap.set("Button", Button);
 componentMap.set("Separator", Separator);
 componentMap.set("Form", Form);
 
-const makeUnknown = (name) => ({ children }) => (
+const makeUnknown = name => ({ children }) => (
   <div>
     <h3>Unknown component: {name}</h3>
     {children}
@@ -139,8 +154,12 @@ const PageContent = () => {
     <div>Loading...</div>
   ) : page ? (
     <div>
-      <h1>{page.title}</h1>
-      <h3>{page.template} Template</h3>
+      <Row>
+        <Column>
+          <h1>{page.title}</h1>
+          <h3>{page.template} Template</h3>
+        </Column>
+      </Row>
       {page.layout.map(render)}
     </div>
   ) : (
