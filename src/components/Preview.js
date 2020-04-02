@@ -32,10 +32,18 @@ const Row = ({ color, backgroundImage, backgroundColor, fluid, children }) => {
   );
 };
 
-const Column = ({ mobileSpan, tabletSpan, desktopSpan, children }) => {
+const Column = ({
+  mobileSpan = 4,
+  tabletSpan = 8,
+  desktopSpan = 12,
+  mobileOffset = 0,
+  tabletOffset = 0,
+  desktopOffset = 0,
+  children
+}) => {
   return (
     <div
-      className={`col-sm-${mobileSpan} col-md-${tabletSpan} col-lg-${desktopSpan} col-xl-${desktopSpan}`}
+      className={`col-sm-${mobileSpan} col-md-${tabletSpan} col-lg-${desktopSpan} col-xl-${desktopSpan} col-sm-offset-${mobileOffset} col-md-offset-${tabletOffset} col-lg-offset-${desktopOffset} col-xl-offset-${desktopOffset}`}
     >
       {children}
     </div>
