@@ -1,7 +1,7 @@
 import React, { createElement, useState, useEffect } from "react";
 import { createClient } from "contentful";
 
-import "../styles/kit.scss";
+import "../styles/grid.css";
 
 const SPACE = "pae8b0p2q3d7";
 const ENVIRONMENT = "master";
@@ -18,22 +18,25 @@ const client = createClient({
 // In production we'd probably lazy load these.
 const Row = ({ color, backgroundImage, backgroundColor, fluid, children }) => {
   return (
-    <div
-      className="bbg-row"
+    <section
       css={{
         color: color,
         backgroundColor: backgroundColor,
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none"
       }}
     >
-      <div className="bbg-row--content">{children}</div>
-    </div>
+      <div className={fluid ? "container" : "container-fluid"}>
+        <div className="row">{children}</div>
+      </div>
+    </section>
   );
 };
 
-const Column = ({ desktopSpan, children }) => {
+const Column = ({ mobileSpan, tabletSpan, desktopSpan, children }) => {
   return (
-    <div className={`bbg-column bbg-column--width-${desktopSpan}`}>
+    <div
+      className={`col-sm-${mobileSpan} col-md-${tabletSpan} col-lg-${desktopSpan} col-xl-${desktopSpan}`}
+    >
       {children}
     </div>
   );
