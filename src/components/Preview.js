@@ -25,7 +25,7 @@ const Row = ({ color, backgroundImage, backgroundColor, fluid, children }) => {
         backgroundImage: backgroundImage ? `url(${backgroundImage})` : "none"
       }}
     >
-      <div className={fluid ? "container" : "container-fluid"}>
+      <div className={fluid ? "container-fluid" : "container"}>
         <div className="row">{children}</div>
       </div>
     </section>
