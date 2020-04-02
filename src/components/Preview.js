@@ -97,12 +97,19 @@ componentMap.set("Button", Button);
 componentMap.set("Separator", Separator);
 componentMap.set("Form", Form);
 
+const makeUnknown = (name) => ({ children }) => (
+  <div>
+    <h3>Unknown component: {name}</h3>
+    {children}
+  </div>
+);
+
 // recursive function to convert JSON to React elements
 const render = definition => {
   // TODO handle case when no component exists with given name
-  const element = componentMap.get(definition.name);
+  const Element = componentMap.get(definition.name);
   return createElement(
-    element,
+    Element || makeUnknown(definition.name),
     { ...definition.props, key: definition.id },
     ...definition.children.map(render)
   );

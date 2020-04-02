@@ -24,11 +24,7 @@
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-right: -8px;
-  margin-right: -0.5rem;
   margin-right: -16px;
-  margin-left: -8px;
-  margin-left: -0.5rem;
   margin-left: -16px;
 }
 
@@ -61,11 +57,7 @@
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
-  padding-right: 8px;
-  padding-right: 0.5rem;
   padding-right: 16px;
-  padding-left: 8px;
-  padding-left: 0.5rem;
   padding-left: 16px;
 }
 
@@ -183,7 +175,6 @@
 @media only screen and (min-width: 768px) {
   .container {
     width: 704px;
-    width: 704px;
   }
 
   .container-fluid {
@@ -214,9 +205,7 @@
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
-    padding-right: 18px;
     padding-right: 16px;
-    padding-left: 18px;
     padding-left: 16px;
   }
 
@@ -375,7 +364,6 @@
 @media only screen and (min-width: 1024px) {
   .container {
     width: 964px;
-    width: 964px;
   }
 
   .container-fluid {
@@ -414,9 +402,7 @@
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
-    padding-right: 0.5rem;
     padding-right: 16px;
-    padding-left: 0.5rem;
     padding-left: 16px;
   }
 
@@ -615,7 +601,6 @@
 @media only screen and (min-width: 1280px) {
   .container {
     width: 1216px;
-    width: 964px;
   }
 
   .container-fluid {
@@ -654,9 +639,7 @@
     -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
-    padding-right: 0.5rem;
     padding-right: 16px;
-    padding-left: 0.5rem;
     padding-left: 16px;
   }
 
